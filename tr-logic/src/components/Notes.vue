@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'Todos',
+  name: 'Notes',
   methods: {
     removeTodo() {
       console.log('click');
