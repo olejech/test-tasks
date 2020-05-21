@@ -2,60 +2,46 @@
   <div class="note">
     <button class="btn button-add" @click="openModal">Добавить заметку</button>
     <div class="note-wrap">
-      <h1>Поиск работы [id {{this.$route.params.id}}]</h1>
+      <h1>{{note.title}}</h1>
       <ul class="list">
-        <li class="item">
-          <a href="#" class="link">Найти работу</a>
+        <li class="item" v-for="todo in note.todos" :key="todo.title">
+          <span class="todo">{{todo.title}}</span>
           <button class="btn button-change" @click="changeTodo">Изменить</button>
-          <button class="btn button-remove" @click="removeTodo">Удалить</button>
-        </li>
-        <li class="item">
-          <a href="#" class="link">Получить деньги</a>
-          <button class="btn button-remove" @click="removeTodo">Удалить</button>
-        </li>
-        <li class="item">
-          <a href="#" class="link">Получить деньги</a>
-          <button class="btn button-remove" @click="removeTodo">Удалить</button>
-        </li>
-        <li class="item">
-          <a href="#" class="link">Получить деньги</a>
-          <button class="btn button-remove" @click="removeTodo">Удалить</button>
-        </li>
-        <li class="item">
-          <a href="#" class="link">Получить деньги</a>
           <button class="btn button-remove" @click="removeTodo">Удалить</button>
         </li>
       </ul>
     </div>
 
-    <div class="modal" :class="{active: isOpenModal}">
-      <h2>Добавить новую заметку</h2>
-      <label for="note" class="modal__label">Название заметки</label>
-      <input type="text" name="note" id="note" class="modal__input" />
-      <label for="todos" class="modal__label">Список задач (каждая с новой строки)</label>
-      <textarea name="todos" id cols="20" rows="5" class="modal__textarea"></textarea>
-      <button class="btn button-cancel" @click="closeModal">Отмена</button>
-      <button class="btn button-add" @click="addNote">Добавить</button>
-    </div>
-    <div class="overlay" :class="{active: isOpenModal}"></div>
+    <Add-note :isOpenModal="isOpenModal" @closeModal="closeModal" />
   </div>
 </template>
 
 <script>
+import AddNote from '@/components/AddNote.vue';
+
 export default {
   name: 'Note',
+  components: {
+    AddNote,
+  },
   data() {
     return {
       isOpenModal: false,
+      note: {},
     };
+  },
+  mounted() {
+    this.note = this.$store.state.notes.find(
+      note => note.id === +this.$route.params.id
+    );
   },
   methods: {
     openModal() {
-      console.log('click');
-
       this.isOpenModal = true;
     },
     closeModal() {
+      console.log('close');
+
       this.isOpenModal = false;
     },
     removeTodo() {
@@ -65,7 +51,10 @@ export default {
       console.log('click');
     },
     addNote() {
-      console.log('click');
+      this.$store.dispatch('addNote', {
+        note: this.note,
+        textarea: this.textarea,
+      });
     },
   },
 };
@@ -118,5 +107,8 @@ export default {
 .note-wrap {
   max-width: 100%;
   padding: 20px;
+}
+.todo {
+  flex: 0 1 100%;
 }
 </style>

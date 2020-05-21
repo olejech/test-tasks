@@ -2,29 +2,14 @@
   <div class="notes">
     <h1 class="title">Заметки</h1>
     <div class="notes-wrap">
-      <div class="note">
-        <h2>Поиск работы</h2>
+      <div class="note" v-for="note in notes" :key="+note.id">
+        <h2>
+          <router-link :to="'/note/' + note.id" class="link">{{note.title}}</router-link>
+        </h2>
         <ul class="list">
-          <li class="item">
-            <a href="#" class="link">Найти работу</a>
-            <button class="button" @click="removeTodo">Удалить</button>
-          </li>
-          <li class="item">
-            <a href="#" class="link">Получить деньги</a>
-            <button class="button" @click="removeTodo">Удалить</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="note">
-        <h2>Магазин</h2>
-        <ul class="list">
-          <li class="item">
-            <a href="#" class="link">Купить хлеб</a>
-            <button class="button" @click="removeTodo">Удалить</button>
-          </li>
-          <li class="item">
-            <a href="#" class="link">Купить молоко</a>
+          <li class="item" v-for="(todo, i) in note.todos" :key="todo.title">
+            {{i + 1}}.&nbsp;
+            <span class="todo">{{todo.title}}</span>
             <button class="button" @click="removeTodo">Удалить</button>
           </li>
         </ul>
@@ -39,6 +24,11 @@ export default {
   methods: {
     removeTodo() {
       console.log('click');
+    },
+  },
+  computed: {
+    notes() {
+      return this.$store.state.notes;
     },
   },
 };
@@ -61,7 +51,6 @@ export default {
 }
 .link {
   color: #42b983;
-  flex: 0 1 100%;
 }
 .button {
   display: inline-block;
@@ -84,5 +73,8 @@ export default {
   padding: 10px;
   background: rgb(216, 211, 211);
   border-radius: 5px;
+}
+.todo {
+  flex: 0 1 100%;
 }
 </style>
