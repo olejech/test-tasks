@@ -1,27 +1,28 @@
 <template>
   <div class="note">
+    <button class="btn button-add">Добавить заметку</button>
     <div class="note-wrap">
       <h1>Поиск работы [id {{this.$route.params.id}}]</h1>
       <ul class="list">
         <li class="item">
           <a href="#" class="link">Найти работу</a>
-          <button class="button" @click="removeTodo">Удалить</button>
+          <button class="btn button-remove" @click="removeTodo">Удалить</button>
         </li>
         <li class="item">
           <a href="#" class="link">Получить деньги</a>
-          <button class="button" @click="removeTodo">Удалить</button>
+          <button class="btn button-remove" @click="removeTodo">Удалить</button>
         </li>
         <li class="item">
           <a href="#" class="link">Получить деньги</a>
-          <button class="button" @click="removeTodo">Удалить</button>
+          <button class="btn button-remove" @click="removeTodo">Удалить</button>
         </li>
         <li class="item">
           <a href="#" class="link">Получить деньги</a>
-          <button class="button" @click="removeTodo">Удалить</button>
+          <button class="btn button-remove" @click="removeTodo">Удалить</button>
         </li>
         <li class="item">
           <a href="#" class="link">Получить деньги</a>
-          <button class="button" @click="removeTodo">Удалить</button>
+          <button class="btn button-remove" @click="removeTodo">Удалить</button>
         </li>
       </ul>
     </div>
@@ -58,21 +59,20 @@ export default {
   color: #42b983;
   flex: 0 1 100%;
 }
-.button {
-  display: inline-block;
+.button-remove {
   background: tomato;
-  border: 0;
-  padding: 5px 10px;
   color: white;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+}
+.button-add {
+  background: #42b983;
+  color: white;
 }
 .note {
   max-width: 600px;
   margin: 0 auto;
   background: #eee;
   border-radius: 5px;
+  padding: 20px;
 }
 .note-wrap {
   max-width: 100%;

@@ -3,11 +3,13 @@
     <div id="nav">
       <router-link to="/">Главная</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
+@import '@/assets/global.scss';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
