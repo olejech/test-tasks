@@ -6,13 +6,14 @@
         <h2>
           <router-link :to="'/note/' + note.id" class="link">{{note.title}}</router-link>
         </h2>
-        <ul class="list">
+        <ul v-if="note.todos.length" class="list">
           <li class="item" v-for="(todo, i) in note.todos" :key="todo.title">
             {{i + 1}}.&nbsp;
             <span class="todo">{{todo.title}}</span>
-            <button class="button" @click="removeTodo">Удалить</button>
+            <button class="button" @click="removeTodo(note.id, todo.id)">Удалить</button>
           </li>
         </ul>
+        <div v-else>Нет задач</div>
       </div>
     </div>
   </div>
@@ -22,8 +23,8 @@
 export default {
   name: 'Notes',
   methods: {
-    removeTodo() {
-      console.log('click');
+    removeTodo(noteId, todoId) {
+      this.$store.dispatch('removeTodo', { noteId, todoId });
     },
   },
   computed: {

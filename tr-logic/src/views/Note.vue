@@ -3,13 +3,14 @@
     <button class="btn button-add" @click="openModal">Добавить заметку</button>
     <div class="note-wrap">
       <h1>{{note.title}}</h1>
-      <ul class="list">
+      <ul v-if="note.todos.length" class="list">
         <li class="item" v-for="todo in note.todos" :key="todo.title">
           <span class="todo">{{todo.title}}</span>
           <button class="btn button-change" @click="changeTodo">Изменить</button>
-          <button class="btn button-remove" @click="removeTodo">Удалить</button>
+          <button class="btn button-remove" @click="removeTodo(todo.id)">Удалить</button>
         </li>
       </ul>
+      <div v-else>Нет задач</div>
     </div>
 
     <Add-note :isOpenModal="isOpenModal" @closeModal="closeModal" />
@@ -44,8 +45,11 @@ export default {
 
       this.isOpenModal = false;
     },
-    removeTodo() {
-      console.log('click');
+    removeTodo(todoId) {
+      this.$store.dispatch('removeTodo', {
+        noteId: +this.$route.params.id,
+        todoId,
+      });
     },
     changeTodo() {
       console.log('click');
