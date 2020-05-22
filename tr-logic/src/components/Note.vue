@@ -9,16 +9,25 @@
       <li class="item" v-for="todo in note.todos" :key="todo.title">
         <span class="todo">{{todo.title}}</span>
         <button v-if="canChange" class="btn btn-change" @click="changeTodo">Изменить</button>
-        <button class="btn btn-remove" @click="removeTodo(todo.id)">Удалить</button>
+        <button class="btn btn-remove" @click="confirmRemove(todo.id)">Удалить</button>
       </li>
     </ul>
     <div v-else>Нет задач</div>
+
+    <transition name="appear">
+      <Confirm :isOpenModal="isOpenModal" @confirm="removeTodo" @cancel="closeModal" />
+    </transition>
   </div>
 </template>
 
 <script>
+import Confirm from '@/components/Confirm.vue';
+
 export default {
   name: 'Note',
+  components: {
+    Confirm,
+  },
   props: {
     noteFromParent: {
       type: Object,
@@ -35,6 +44,8 @@ export default {
   data() {
     return {
       note: {},
+      isOpenModal: false,
+      selectedTodoId: null,
     };
   },
   created() {
@@ -47,11 +58,20 @@ export default {
     }
   },
   methods: {
-    removeTodo(todoId) {
+    confirmRemove(id) {
+      this.selectedTodoId = id;
+      this.isOpenModal = true;
+    },
+    removeTodo() {
+      this.isOpenModal = false;
+
       this.$store.dispatch('removeTodo', {
-        noteId: +this.$route.params.id,
-        todoId,
+        noteId: this.note.id,
+        todoId: this.selectedTodoId,
       });
+    },
+    closeModal() {
+      this.isOpenModal = false;
     },
     changeTodo() {
       console.log('click');
