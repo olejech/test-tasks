@@ -1,32 +1,44 @@
 <template>
   <div>
-    <h2>
-      <router-link v-if="isTitleLink" :to="'/note/' + note.id" class="link">{{note.title}}</router-link>
-      <template v-else>{{note.title}}</template>
-    </h2>
+    <div class="header">
+      <h2>
+        <router-link v-if="isTitleLink" :to="'/note/' + note.id" class="link">{{note.title}}</router-link>
+        <template v-else>{{note.title}}</template>
+      </h2>
+
+      <button v-if="canChange" class="btn btn-change" @click="openModalEdit(note)">Изменить</button>
+    </div>
 
     <ul v-if="note.todos.length" class="list">
       <li class="item" v-for="todo in note.todos" :key="todo.title">
         <span class="todo">{{todo.title}}</span>
-        <button v-if="canChange" class="btn btn-change" @click="changeTodo">Изменить</button>
+        <input
+          type="checkbox"
+          class="checkbox"
+          @click="checkTodo(todo.id)"
+          :checked="todo.done"
+          :disabled="!canCheck"
+        />
         <button class="btn btn-remove" @click="confirmRemove(todo.id)">Удалить</button>
       </li>
     </ul>
     <div v-else>Нет задач</div>
 
-    <transition name="appear">
-      <Confirm :isOpenModal="isOpenModal" @confirm="removeTodo" @cancel="closeModal" />
-    </transition>
+    <Confirm :isOpenModal="isOpenModalConfirm" @confirm="removeTodo" @cancel="closeModal" />
+
+    <EditNote :isOpenModal="isOpenModalEdit" :note="selectedNote" @cancel="closeModal" />
   </div>
 </template>
 
 <script>
 import Confirm from '@/components/Confirm.vue';
+import EditNote from '@/components/EditNote.vue';
 
 export default {
   name: 'Note',
   components: {
     Confirm,
+    EditNote,
   },
   props: {
     noteFromParent: {
@@ -40,12 +52,18 @@ export default {
       type: Boolean,
       default: false,
     },
+    canCheck: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       note: {},
-      isOpenModal: false,
+      isOpenModalEdit: false,
+      isOpenModalConfirm: false,
       selectedTodoId: null,
+      selectedNote: null,
     };
   },
   created() {
@@ -60,10 +78,10 @@ export default {
   methods: {
     confirmRemove(id) {
       this.selectedTodoId = id;
-      this.isOpenModal = true;
+      this.isOpenModalConfirm = true;
     },
     removeTodo() {
-      this.isOpenModal = false;
+      this.isOpenModalConfirm = false;
 
       this.$store.dispatch('removeTodo', {
         noteId: this.note.id,
@@ -71,16 +89,29 @@ export default {
       });
     },
     closeModal() {
-      this.isOpenModal = false;
+      this.isOpenModalConfirm = false;
+      this.isOpenModalEdit = false;
     },
-    changeTodo() {
-      console.log('click');
+    openModalEdit(note) {
+      this.isOpenModalEdit = true;
+      this.selectedNote = note;
+    },
+    checkTodo(todoId) {
+      this.$store.dispatch('checkTodo', {
+        noteId: this.note.id,
+        todoId,
+      });
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .list {
   list-style-type: none;
   padding: 0;
@@ -100,6 +131,15 @@ export default {
   padding: 20px;
 }
 .todo {
+  min-width: 150px;
   flex: 0 1 100%;
+}
+.checkbox {
+  margin-right: 10px;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 </style>

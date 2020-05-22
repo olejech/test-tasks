@@ -1,7 +1,7 @@
 <template>
   <div class="note">
     <Add-note />
-    <Note-item />
+    <Note-item canChange canCheck />
   </div>
 </template>
 

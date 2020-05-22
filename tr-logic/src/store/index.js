@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { generateId } from '../utils/id';
@@ -14,10 +16,12 @@ export default new Vuex.Store({
           {
             id: 1,
             title: 'Купить хлеб',
+            done: false,
           },
           {
             id: 2,
             title: 'Купить молоко',
+            done: true,
           },
         ],
       },
@@ -28,10 +32,12 @@ export default new Vuex.Store({
           {
             id: 1,
             title: 'Вью',
+            done: false,
           },
           {
             id: 2,
             title: 'Реакт',
+            done: false,
           },
         ],
       },
@@ -46,6 +52,16 @@ export default new Vuex.Store({
       const restTodos = filteredNote.todos.filter(todo => todo.id !== todoId);
 
       filteredNote.todos = restTodos;
+    },
+    checkTodo(state, { noteId, todoId }) {
+      state.notes
+        .find(note => note.id === noteId)
+        .todos.map(todo => {
+          if (todo.id === todoId) {
+            todo.done = !todo.done;
+          }
+          return todo;
+        });
     },
   },
   actions: {
@@ -65,6 +81,9 @@ export default new Vuex.Store({
     },
     removeTodo({ commit }, { noteId, todoId }) {
       commit('removeTodo', { noteId, todoId });
+    },
+    checkTodo({ commit }, { noteId, todoId }) {
+      commit('checkTodo', { noteId, todoId });
     },
   },
 });
