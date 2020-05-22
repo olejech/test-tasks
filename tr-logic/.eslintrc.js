@@ -13,5 +13,6 @@ module.exports = {
     'arrow-parens': 'off',
     'max-len': 'off',
     'comma-dangle': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

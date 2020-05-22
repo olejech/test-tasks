@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { generateId } from '../utils/id';
 
 Vue.use(Vuex);
 
@@ -48,11 +49,17 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    addNote({ commit }, data) {
+    addNote({ commit }, { title, textarea }) {
+      const titleTodos = textarea.split('\n');
+      const todos = titleTodos.map(titleTodo => ({
+        id: generateId(),
+        title: titleTodo,
+      }));
+
       const newNote = {
-        id: new Date(),
-        note: data.note,
-        todos: data.textarea.split('\n'),
+        id: generateId(),
+        title,
+        todos,
       };
       commit('addNote', newNote);
     },

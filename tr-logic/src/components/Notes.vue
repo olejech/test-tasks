@@ -2,26 +2,21 @@
   <div class="notes">
     <h1 class="title">Заметки</h1>
     <div class="notes-wrap">
-      <div class="note" v-for="note in notes" :key="+note.id">
-        <h2>
-          <router-link :to="'/note/' + note.id" class="link">{{note.title}}</router-link>
-        </h2>
-        <ul v-if="note.todos.length" class="list">
-          <li class="item" v-for="(todo, i) in note.todos" :key="todo.title">
-            {{i + 1}}.&nbsp;
-            <span class="todo">{{todo.title}}</span>
-            <button class="button" @click="removeTodo(note.id, todo.id)">Удалить</button>
-          </li>
-        </ul>
-        <div v-else>Нет задач</div>
+      <div class="note" v-for="note in notes" :key="note.id">
+        <Note :noteFromParent="note" isTitleLink />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Note from '@/components/Note.vue';
+
 export default {
   name: 'Notes',
+  components: {
+    Note,
+  },
   methods: {
     removeTodo(noteId, todoId) {
       this.$store.dispatch('removeTodo', { noteId, todoId });
@@ -74,6 +69,7 @@ export default {
   padding: 10px;
   background: rgb(216, 211, 211);
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 .todo {
   flex: 0 1 100%;

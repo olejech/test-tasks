@@ -1,9 +1,11 @@
 <template>
   <div>
+    <button class="btn btn-add" @click="openModal">Добавить заметку</button>
+
     <div class="modal" :class="{active: isOpenModal}">
       <h2 class="modal__title">Добавить новую заметку</h2>
       <label for="note" class="modal__label">Название заметки</label>
-      <input type="text" name="note" id="note" class="modal__input" v-model.trim="note" />
+      <input type="text" name="note" id="note" class="modal__input" v-model.trim="title" />
       <label for="todos" class="modal__label">Список задач (каждая с новой строки)</label>
       <textarea
         name="todos"
@@ -13,8 +15,8 @@
         class="modal__textarea"
         v-model.trim="textarea"
       ></textarea>
-      <button class="btn button-cancel" @click="closeModal">Отмена</button>
-      <button class="btn button-add" @click="addNote">Добавить</button>
+      <button class="btn btn-cancel" @click="closeModal">Отмена</button>
+      <button class="btn btn-add" @click="addNote">Добавить</button>
     </div>
     <div class="overlay" :class="{active: isOpenModal}"></div>
   </div>
@@ -23,19 +25,29 @@
 <script>
 export default {
   name: 'AddNote',
-  props: ['isOpenModal'],
   data() {
     return {
-      note: '',
+      title: '',
       textarea: [],
+      isOpenModal: false,
     };
   },
   methods: {
-    closeModal() {
-      console.log('close');
-      this.$emit('closeModal');
+    openModal() {
+      this.isOpenModal = true;
     },
-    addNote() {},
+    closeModal() {
+      this.isOpenModal = false;
+    },
+    addNote() {
+      this.$store.dispatch('addNote', {
+        title: this.title,
+        textarea: this.textarea,
+      });
+      this.title = '';
+      this.textarea = '';
+      this.isOpenModal = false;
+    },
   },
 };
 </script>

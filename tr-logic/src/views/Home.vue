@@ -1,16 +1,19 @@
 <template>
   <div class="home">
+    <Add-note />
     <Notes />
   </div>
 </template>
 
 <script>
 import Notes from '@/components/Notes.vue';
+import AddNote from '@/components/AddNote.vue';
 
 export default {
   name: 'Home',
   components: {
     Notes,
+    AddNote,
   },
 };
 </script>

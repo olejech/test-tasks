@@ -7,4 +7,26 @@
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+
+  &-remove {
+    background: tomato;
+    color: white;
+  }
+
+  &-add {
+    background: #42b983;
+    color: white;
+  }
+
+  &-change {
+    background: #e4c92e;
+    color: white;
+    margin-right: 10px;
+  }
+
+  &-cancel {
+    background: darkRed;
+    color: white;
+    margin-right: 10px;
+  }
 }
