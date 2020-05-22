@@ -71,7 +71,7 @@ export default {
       this.note = this.noteFromParent;
     } else {
       this.note = this.$store.state.notes.find(
-        note => note.id === +this.$route.params.id
+        note => note.id === this.$route.params.id
       );
     }
   },

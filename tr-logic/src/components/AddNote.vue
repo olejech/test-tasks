@@ -56,6 +56,7 @@ export default {
       this.title = '';
       this.textarea = '';
       this.isOpenModal = false;
+      console.log(this.$store.state.notes);
     },
   },
 };
