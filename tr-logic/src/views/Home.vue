@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <AddNote buttonTitle="Добавить заметку" type="note" />
+    <p>Удалить созданную заметку (&larr;), вернуть её (&rarr;)</p>
     <Notes />
   </div>
 </template>
@@ -14,6 +15,24 @@ export default {
   components: {
     Notes,
     AddNote,
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('keyup', this.keyUpHandler);
+    });
+  },
+  methods: {
+    keyUpHandler(e) {
+      if (this.canUndo && e.key === 'ArrowLeft') {
+        this.undo();
+      }
+      if (this.canRedo && e.key === 'ArrowRight') {
+        this.redo();
+      }
+    },
+  },
+  beforeDestroy() {
+    window.removeEventListener('keyup', this.keyUpHandler);
   },
 };
 </script>

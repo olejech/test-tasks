@@ -3,45 +3,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { generateId } from '../utils/id';
+import VuexUndoRedo from 'vuex-undo-redo';
 
 Vue.use(Vuex);
+Vue.use(VuexUndoRedo);
 
 export default new Vuex.Store({
   state: {
-    notes: [
-      {
-        id: 1,
-        title: 'Покупки',
-        todos: [
-          {
-            id: 1,
-            title: 'Купить хлеб',
-            done: false,
-          },
-          {
-            id: 2,
-            title: 'Купить молоко',
-            done: true,
-          },
-        ],
-      },
-      {
-        id: 2,
-        title: 'Учеба',
-        todos: [
-          {
-            id: 1,
-            title: 'Вью',
-            done: false,
-          },
-          {
-            id: 2,
-            title: 'Реакт',
-            done: false,
-          },
-        ],
-      },
-    ],
+    notes: [],
   },
   mutations: {
     addNote(state, newNote) {
@@ -77,6 +46,9 @@ export default new Vuex.Store({
           note.todos.push(...todos);
         }
       });
+    },
+    emptyState() {
+      this.replaceState({ notes: [] });
     },
   },
   actions: {
