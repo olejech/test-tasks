@@ -1,11 +1,13 @@
 <template>
   <div>
-    <button class="btn btn-add" @click="openModal">Добавить заметку</button>
+    <button class="btn btn-add" @click="openModal">{{buttonTitle}}</button>
 
     <Modal heading="Добавить новую заметку" :isOpenModal="isOpenModal">
       <template #body>
-        <label for="note" class="modal__label">Название заметки</label>
-        <input type="text" name="note" id="note" class="modal__input" v-model.trim="title" />
+        <template v-if="type === 'note'">
+          <label for="note" class="modal__label">Название заметки</label>
+          <input type="text" name="note" id="note" class="modal__input" v-model.trim="title" />
+        </template>
 
         <label for="textarea" class="modal__label">Список задач (каждая с новой строки)</label>
         <textarea
@@ -20,7 +22,8 @@
 
       <template #footer>
         <button class="btn btn-cancel" @click="closeModal">Отмена</button>
-        <button class="btn btn-add" @click="addNote">Добавить</button>
+        <button v-if="type === 'note'" class="btn btn-add" @click="addNote">Добавить заметку</button>
+        <button v-if="type === 'todos'" class="btn btn-add" @click="addTodos">Добавить задачи</button>
       </template>
     </Modal>
   </div>
@@ -34,6 +37,7 @@ export default {
   components: {
     Modal,
   },
+  props: ['buttonTitle', 'type', 'noteId'],
   data() {
     return {
       title: '',
@@ -56,7 +60,14 @@ export default {
       this.title = '';
       this.textarea = '';
       this.isOpenModal = false;
-      console.log(this.$store.state.notes);
+    },
+    addTodos() {
+      this.$store.dispatch('addTodos', {
+        noteId: this.noteId,
+        textarea: this.textarea,
+      });
+      this.textarea = '';
+      this.isOpenModal = false;
     },
   },
 };

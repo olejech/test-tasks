@@ -1,6 +1,6 @@
 <template>
   <div class="note">
-    <Add-note />
+    <AddNote buttonTitle="Добавить другую заметку" type="note" />
     <Note-item canChange canCheck />
   </div>
 </template>

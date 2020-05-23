@@ -8,9 +8,8 @@
 
       <button v-if="canChange" class="btn btn-change" @click="openModalEdit(note)">Изменить</button>
     </div>
-
     <ul v-if="note.todos.length" class="list">
-      <li class="item" v-for="todo in note.todos" :key="todo.title">
+      <li class="item" v-for="todo in note.todos" :key="todo.id">
         <span class="todo">{{todo.title}}</span>
         <input
           type="checkbox"
@@ -24,21 +23,30 @@
     </ul>
     <div v-else>Нет задач</div>
 
+    <AddNote v-if="!noteFromParent" type="todos" :noteId="note.id" buttonTitle="Добавить задачи" />
+
     <Confirm :isOpenModal="isOpenModalConfirm" @confirm="removeTodo" @cancel="closeModal" />
 
-    <EditNote :isOpenModal="isOpenModalEdit" :note="selectedNote" @cancel="closeModal" />
+    <EditNote
+      v-if="selectedNote"
+      :isOpenModal="isOpenModalEdit"
+      :note="selectedNote"
+      @close="closeModal"
+    />
   </div>
 </template>
 
 <script>
 import Confirm from '@/components/Confirm.vue';
 import EditNote from '@/components/EditNote.vue';
+import AddNote from '@/components/AddNote.vue';
 
 export default {
   name: 'Note',
   components: {
     Confirm,
     EditNote,
+    AddNote,
   },
   props: {
     noteFromParent: {
@@ -71,7 +79,7 @@ export default {
       this.note = this.noteFromParent;
     } else {
       this.note = this.$store.state.notes.find(
-        note => note.id === this.$route.params.id
+        note => note.id === +this.$route.params.id
       );
     }
   },

@@ -2,17 +2,7 @@
   <Modal heading="Изменить заметку" :isOpenModal="isOpenModal">
     <template #body>
       <label for="note" class="modal__label">Название заметки</label>
-      <input type="text" name="note" id="note" class="modal__input" v-model.trim="note.title" />
-
-      <label for="textarea" class="modal__label">Список задач (каждая с новой строки)</label>
-      <textarea
-        name="textarea"
-        id="textarea"
-        cols="20"
-        rows="5"
-        class="modal__textarea"
-        v-model="todosList"
-      ></textarea>
+      <input type="text" name="note" id="note" class="modal__input" v-model.trim="title" />
     </template>
 
     <template #footer>
@@ -30,6 +20,11 @@ export default {
     Modal,
   },
   props: ['isOpenModal', 'note'],
+  data() {
+    return {
+      title: this.note.title,
+    };
+  },
   methods: {
     confirm() {
       this.$emit('confirm');
@@ -37,10 +32,12 @@ export default {
     closeModal() {
       this.$emit('cancel');
     },
-  },
-  computed: {
-    todosList() {
-      return this.note.todos.map(todo => todo.title).join('\n');
+    saveNote() {
+      this.$store.dispatch('changeNameNote', {
+        noteId: this.note.id,
+        title: this.title,
+      });
+      this.$emit('close');
     },
   },
 };

@@ -63,6 +63,21 @@ export default new Vuex.Store({
           return todo;
         });
     },
+    changeNameNote(state, { noteId, title }) {
+      state.notes.map(note => {
+        if (note.id === noteId) {
+          note.title = title;
+        }
+        return note;
+      });
+    },
+    addTodos(state, { noteId, todos }) {
+      state.notes.find(note => {
+        if (note.id === noteId) {
+          note.todos.push(...todos);
+        }
+      });
+    },
   },
   actions: {
     addNote({ commit }, { title, textarea }) {
@@ -70,6 +85,7 @@ export default new Vuex.Store({
       const todos = titleTodos.map(titleTodo => ({
         id: generateId(),
         title: titleTodo,
+        done: false,
       }));
 
       const newNote = {
@@ -84,6 +100,19 @@ export default new Vuex.Store({
     },
     checkTodo({ commit }, { noteId, todoId }) {
       commit('checkTodo', { noteId, todoId });
+    },
+    changeNameNote({ commit }, { noteId, title }) {
+      commit('changeNameNote', { noteId, title });
+    },
+    addTodos({ commit }, { noteId, textarea }) {
+      const titleTodos = textarea.split('\n');
+      const todos = titleTodos.map(titleTodo => ({
+        id: generateId(),
+        title: titleTodo,
+        done: false,
+      }));
+
+      commit('addTodos', { noteId, todos });
     },
   },
 });

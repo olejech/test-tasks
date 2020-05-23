@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Add-note />
+    <AddNote buttonTitle="Добавить заметку" type="note" />
     <Notes />
   </div>
 </template>
