@@ -14,7 +14,7 @@ Demo: https://immelman-test-task.now.sh
 
 ## 3. React-hooks-1-router-auth-localStorage
 
-Repo: https://github.com/olejech/test-tasks/tree/master/react-hooks-1-router-auth-localstorage/
+Repo: https://github.com/olejech/test-tasks/tree/master/react-hooks-1-router-auth-localStorage
 
 Demo: https://react-hooks-five-orpin.now.sh/
 
