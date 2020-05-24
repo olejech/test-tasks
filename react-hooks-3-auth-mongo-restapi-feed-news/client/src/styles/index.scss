@@ -1,0 +1,148 @@
+@import 'normalize.css';
+@import url('<link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap&subset=cyrillic" rel="stylesheet">');
+
+$blue: #2196f3;
+$blueLighten3: #90caf9;
+$blueLighten4: #bbdefb;
+$blueLighten5: #e3f2fd;
+$blueDarken1: #1e88e5;
+$blueDarken2: #1976d2;
+$blueDarken3: #1565c0;
+$blueDarken4: #0d47a1;
+
+body {
+  font-family: 'Lora';
+}
+
+a {
+  color: $blue;
+
+  &:hover {
+    color: $blueDarken2;
+  }
+}
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: $blueLighten4;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__list {
+    display: flex;
+    justify-content: flex-end;
+    width: 200px;
+    list-style: none;
+  }
+
+  &__item {
+    margin-right: 1rem;
+  }
+
+  .active {
+    color: $blueDarken4;
+  }
+}
+
+.form {
+  & input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    outline: none;
+    border: 1px solid $blueLighten3;
+    border-radius: 3px;
+
+    &:focus {
+      border: 1px solid $blue;
+    }
+  }
+
+  &-create {
+    display: flex;
+    flex-direction: column;
+
+    textarea {
+      margin: 1rem 0.5rem 1rem 0;
+      padding: 0.5rem;
+      outline: none;
+      border: 1px solid $blueLighten3;
+      border-radius: 3px;
+
+      &:focus {
+        border: 1px solid $blue;
+      }
+    }
+  }
+
+  .buttons {
+    margin-top: 1rem;
+
+    button {
+      margin-right: 1rem;
+    }
+  }
+}
+
+button {
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  background-color: $blue;
+  border: 1px solid $blue;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blueDarken1;
+  }
+
+  &:active {
+    background-color: $blueDarken2;
+  }
+}
+
+.profile {
+  ul,
+  ol {
+    padding-left: 1rem;
+  }
+  border-top: 2px solid $blueLighten3;
+  border-bottom: 2px solid $blueLighten3;
+  padding-bottom: 1rem;
+
+  button {
+    margin-right: 0.5rem;
+  }
+}
+
+.loader {
+  border: 16px solid $blueLighten3;
+  border-top: 16px solid $blue;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.posts {
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed black;
+}
