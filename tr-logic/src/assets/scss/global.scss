@@ -1,4 +1,4 @@
-@import 'vars';
+$duration: 0.3s;
 
 .btn {
   display: inline-block;
@@ -9,27 +9,44 @@
   cursor: pointer;
   min-width: 100px;
   min-height: 30px;
+  transition: $duration;
 
   &-remove {
     background: tomato;
     color: white;
+
+    &:hover {
+      background: darken(tomato, 20%);
+    }
   }
 
   &-add {
     background: #42b983;
     color: white;
+
+    &:hover {
+      background: darken(#42b983, 10%);
+    }
   }
 
   &-change {
     background: #e4c92e;
     color: white;
     margin-right: 10px;
+
+    &:hover {
+      background: darken(#e4c92e, 20%);
+    }
   }
 
   &-cancel {
     background: darkRed;
     color: white;
     margin-right: 10px;
+
+    &:hover {
+      background: lighten(darkRed, 10%);
+    }
   }
 }
 
