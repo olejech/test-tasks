@@ -1,11 +1,12 @@
 <template>
   <div class="notes">
     <h1 class="title">Заметки</h1>
-    <div class="notes-wrap">
+    <div v-if="notes.length" class="notes-wrap">
       <div class="note" v-for="note in notes" :key="note.id">
         <Note :noteFromParent="note" isTitleLink />
       </div>
     </div>
+    <div v-else>Нет задач</div>
   </div>
 </template>
 

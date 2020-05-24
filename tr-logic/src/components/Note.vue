@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="note">
     <div class="header">
       <h2>
         <router-link v-if="isTitleLink" :to="'/note/' + note.id" class="link">{{note.title}}</router-link>
@@ -21,7 +21,7 @@
         <button class="btn btn-remove" @click="confirmRemove(todo.id)">Удалить</button>
       </li>
     </ul>
-    <div v-else>Нет задач</div>
+    <div class="empty-todos-list" v-else>Нет задач</div>
 
     <AddNote v-if="!noteFromParent" type="todos" :noteId="note.id" buttonTitle="Добавить задачи" />
 
@@ -34,6 +34,7 @@
       @close="closeModal"
     />
   </div>
+  <div class="error" v-else>Такой заметки нет</div>
 </template>
 
 <script>
@@ -149,5 +150,8 @@ export default {
   &:disabled {
     cursor: not-allowed;
   }
+}
+.empty-todos-list {
+  margin-bottom: 20px;
 }
 </style>

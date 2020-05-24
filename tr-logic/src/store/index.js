@@ -1,9 +1,8 @@
 /* eslint-disable */
-
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { generateId } from '../utils/id';
 import VuexUndoRedo from 'vuex-undo-redo';
+import { generateId } from '../utils/id';
 
 Vue.use(Vuex);
 Vue.use(VuexUndoRedo);
@@ -45,6 +44,7 @@ export default new Vuex.Store({
         if (note.id === noteId) {
           note.todos.push(...todos);
         }
+        return note;
       });
     },
     emptyState() {

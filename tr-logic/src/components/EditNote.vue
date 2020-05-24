@@ -30,7 +30,7 @@ export default {
       this.$emit('confirm');
     },
     closeModal() {
-      this.$emit('cancel');
+      this.$emit('close');
     },
     saveNote() {
       this.$store.dispatch('changeNameNote', {
