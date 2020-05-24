@@ -18,11 +18,6 @@ export default {
   components: {
     Note,
   },
-  methods: {
-    removeTodo(noteId, todoId) {
-      this.$store.dispatch('removeTodo', { noteId, todoId });
-    },
-  },
   computed: {
     notes() {
       return this.$store.state.notes;
