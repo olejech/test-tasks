@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap">
     <div v-if="isOpenModal" class="modal">
       <h2 class="modal__title">{{heading}}</h2>
 
@@ -24,6 +24,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrap {
+  padding: 10px;
+}
 .modal {
   position: fixed;
   top: 0;
@@ -31,9 +34,10 @@ export default {
   right: 0;
   bottom: 0;
   margin: auto;
-  width: 100%;
   max-width: 600px;
-  height: 300px;
+  width: calc(100% - 60px);
+  height: 100%;
+  max-height: 350px;
   z-index: 2;
   background: rgb(204, 204, 204);
   padding: 20px;
@@ -55,8 +59,6 @@ export default {
   }
 
   &__input {
-    width: 100%;
-    max-width: 300px;
     display: block;
     margin-bottom: 20px;
     border: 0;

@@ -71,6 +71,11 @@ export default {
   background: rgb(216, 211, 211);
   border-radius: 5px;
   margin-bottom: 20px;
+
+  @media screen and (max-width: 767px) {
+    max-width: 100%;
+    width: calc(100% - 20px);
+  }
 }
 .todo {
   flex: 0 1 100%;

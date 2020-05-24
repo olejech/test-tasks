@@ -142,6 +142,10 @@ export default {
 .todo {
   min-width: 150px;
   flex: 0 1 100%;
+
+  @media screen and (max-width: 767px) {
+    min-width: auto;
+  }
 }
 .checkbox {
   margin-right: 10px;
