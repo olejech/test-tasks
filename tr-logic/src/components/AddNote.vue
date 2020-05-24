@@ -53,6 +53,9 @@ export default {
       this.isOpenModal = false;
     },
     addNote() {
+      if (!this.title || !this.textarea.length) {
+        return;
+      }
       this.$store.dispatch('addNote', {
         title: this.title,
         textarea: this.textarea,
@@ -62,6 +65,9 @@ export default {
       this.isOpenModal = false;
     },
     addTodos() {
+      if (!this.title || !this.textarea.length) {
+        return;
+      }
       this.$store.dispatch('addTodos', {
         noteId: this.noteId,
         textarea: this.textarea,

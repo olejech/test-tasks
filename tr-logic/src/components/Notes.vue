@@ -6,7 +6,7 @@
         <Note :noteFromParent="note" isTitleLink />
       </div>
     </div>
-    <div v-else>Нет задач</div>
+    <div v-else>Нет заметок</div>
   </div>
 </template>
 
