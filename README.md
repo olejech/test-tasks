@@ -29,3 +29,8 @@ Demo: https://auth-mongo-restapi-feed-news-3.herokuapp.com
 
 Repo: https://github.com/olejech/test-tasks/tree/master/tr-logic/
 Demo: https://tr-logic.now.sh
+
+## 6. Arenum
+
+Repo: https://github.com/olejech/test-tasks/tree/master/arenum/
+Demo: https://arenum.now.sh

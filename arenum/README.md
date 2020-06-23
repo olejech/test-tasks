@@ -1,4 +1,4 @@
-# Test-rtaks Arenum
+# Test-task Arenum
 
 Сверстать страницу списка турниров, используя запрос
 https://app.msrvbattle.ru/tournaments/games/v2/?start=0&gameCode=f533d4be-5b8e-11e9-8647-d663bd873d93&max=15&includePaid=true
