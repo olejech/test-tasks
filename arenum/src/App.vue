@@ -1,6 +1,9 @@
 <template>
   <div class="container" id="app">
-    <div v-for="game in games" :key="game.tournamentCode">
+    <section v-if="error">
+      <h1 class="error">Произошла ошибка</h1>
+    </section>
+    <div v-else v-for="game in games" :key="game.tournamentCode">
       <game-item
         :image="game.tournamentData.cardImage"
         :date="game.tournamentData.startedAt"
@@ -26,7 +29,8 @@ export default {
   },
   data() {
     return {
-      games: []
+      games: [],
+      error: false
     }
   },
   async mounted() {
@@ -36,7 +40,7 @@ export default {
       )
       this.games = res.data
     } catch (error) {
-      console.log('mounted -> error', error)
+      this.error = true
     }
   }
 }
@@ -50,5 +54,12 @@ export default {
   margin: 0 auto;
   padding: 0 20px 18px;
   background: $black;
+  min-height: 100vh;
+}
+
+.error {
+  text-align: center;
+  padding-top: 50px;
+  color: darkRed;
 }
 </style>
