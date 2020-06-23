@@ -8,7 +8,7 @@
       <div class="params">
         <span class="mode">{{ gameMode }}</span>
         <span class="participate">{{ participateCount }} / {{ maxUsers }}</span>
-        <span>{{ prizeTotal }}</span>
+        <span>Призовой фонд {{ prizeTotal }} руб.</span>
       </div>
     </div>
   </div>
@@ -61,8 +61,9 @@ export default {
     },
     dateFormat() {
       return moment(this.date)
-        .lang('ru')
+        .locale('ru')
         .format('DD MMMM YYYY, в h:mm')
+        .toUpperCase()
     }
   }
 }
@@ -73,18 +74,24 @@ export default {
 
 .item {
   display: flex;
-  padding: 18px 0;
-  border-bottom: 1px solid lighten($black, 15%);
-  transition: $duration;
+  padding-top: 18px;
 
-  &:hover {
-    border-bottom: 1px solid lighten($black, 50%);
-    cursor: pointer;
+  &-info {
+    width: 100%;
+    border-bottom: 1px solid lighten($black, 15%);
+    transition: $duration;
+    padding-bottom: 18px;
+
+    &:hover {
+      border-bottom: 1px solid lighten($black, 50%);
+      cursor: pointer;
+    }
   }
 }
 
 .image {
-  max-width: 60px;
+  width: 60px;
+  height: 60px;
   margin-right: 16px;
 }
 
@@ -99,10 +106,15 @@ export default {
   font-size: $fontSizeLg;
   line-height: $lineHeightLg;
   color: $white;
+  font-weight: 500;
 }
 
 .icon {
   margin-right: 6px;
+}
+
+.params {
+  font-weight: 300;
 }
 
 .mode, .participate {

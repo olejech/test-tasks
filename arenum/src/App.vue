@@ -48,7 +48,7 @@ export default {
 .container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 18px 20px;
+  padding: 0 20px 18px;
   background: $black;
 }
 </style>
