@@ -39,4 +39,5 @@ Demo: https://tr-logic.now.sh
 ## 7. Arenum
 
 Repo: https://github.com/olejech/test-tasks/tree/master/arenum/
-Demo: https://arenum.now.sh
+
+Demo: https://arenum.vercel.app
