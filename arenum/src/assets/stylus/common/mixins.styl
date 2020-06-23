@@ -1,10 +1,10 @@
 // font-face
 webfont($family, $file, $weight = normal, $style = normal) {
   @font-face {
-    font-family: $family;
-    src: url('../fonts/' + $file + '.eot');
-    src: url('../fonts/' + $file + '.eot?#iefix') format('embedded-opentype'), url('../fonts/' + $file + '.woff') format('woff'), url('../fonts/' + $file + '.ttf') format('truetype');
-    font-weight: $weight;
-    font-style: $style;
+    font-family $family
+    font-weight $weight
+    font-style $style
+    src url('/fonts/' + $file + '.eot')
+    src url('/fonts/' + $file + '.eot?#iefix') format('embedded-opentype'), url('/fonts/' + $file + '.woff') format('woff'), url('/fonts/' + $file + '.ttf') format('truetype')
   }
 }
