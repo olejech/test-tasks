@@ -1,10 +1,13 @@
 import React from 'react';
-import { MainLayout } from 'layouts/MainLayout'
+import { BrowserRouter } from 'react-router-dom'
+import { useRoutes } from 'Routes'
 
 export default function App() {
+  const routes = useRoutes()
+
   return (
-    <MainLayout>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, consectetur!
-    </MainLayout>
+    <BrowserRouter>
+      {routes}
+    </BrowserRouter>
   );
 }

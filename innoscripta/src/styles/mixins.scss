@@ -1,0 +1,16 @@
+@import './vars';
+
+// Media Query
+@mixin mq($breakpoint, $type: max) {
+  @if map_has_key($breakpoints, $breakpoint) {
+    $width: map_get($breakpoints, $breakpoint);
+
+    @if $type == max {
+      $width: $width - 1px;
+    }
+
+    @media (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
