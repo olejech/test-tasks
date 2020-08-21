@@ -1,0 +1,84 @@
+{
+  "pizzas": [
+    {
+      "id": 1,
+      "imageUrl": "Margherita.jpg",
+      "title": "Margherita",
+      "description": "Pizza Margherita is a typical Neapolitan pizza, made with San Marzano tomatoes, mozzarella. Pizza Margherita is a typical Neapolitan pizza, made with San Marzano tomatoes, mozzarella. Pizza Margherita is a typical Neapolitan pizza, made with San Marzano tomatoes, mozzarella",
+      "price": {
+        "dollars": 20,
+        "euros": 18
+      }
+    },
+    {
+      "id": 2,
+      "imageUrl": "Marinara.jpg",
+      "title": "Marinara",
+      "description": "The traditional Marinara Pizza has tomatoes crushed, or blended, sliced fresh garlic, fresh oregano, extra virgin olive oil and maybe some sea salt to taste",
+      "price": {
+        "dollars": 22,
+        "euros": 17
+      }
+    },
+    {
+      "id": 3,
+      "imageUrl": "Capricciosa.jpg",
+      "title": "Capricciosa",
+      "description": "Classic Italian capricciosa pizza featuring ham, artichokes and mushrooms",
+      "price": {
+        "dollars": 35,
+        "euros": 30
+      }
+    },
+    {
+      "id": 4,
+      "imageUrl": "Quattro Formaggi.jpg",
+      "title": "Quattro Formaggi",
+      "description": "Quattro formaggi is a variety of Italian pizza topped with a combination of four kinds of cheese, as the name suggests",
+      "price": {
+        "dollars": 30,
+        "euros": 27
+      }
+    },
+    {
+      "id": 5,
+      "imageUrl": "Margherita.jpg",
+      "title": "Margherita",
+      "description": "Pizza Margherita is a typical Neapolitan pizza, made with San Marzano tomatoes, mozzarella",
+      "price": {
+        "dollars": 20,
+        "euros": 18
+      }
+    },
+    {
+      "id": 6,
+      "imageUrl": "Marinara.jpg",
+      "title": "Marinara",
+      "description": "The traditional Marinara Pizza has tomatoes crushed, or blended, sliced fresh garlic, fresh oregano, extra virgin olive oil and maybe some sea salt to taste",
+      "price": {
+        "dollars": 22,
+        "euros": 17
+      }
+    },
+    {
+      "id": 7,
+      "imageUrl": "Capricciosa.jpg",
+      "title": "Capricciosa",
+      "description": "Classic Italian capricciosa pizza featuring ham, artichokes and mushrooms",
+      "price": {
+        "dollars": 35,
+        "euros": 30
+      }
+    },
+    {
+      "id": 8,
+      "imageUrl": "Quattro Formaggi.jpg",
+      "title": "Quattro Formaggi",
+      "description": "Quattro formaggi is a variety of Italian pizza topped with a combination of four kinds of cheese, as the name suggests",
+      "price": {
+        "dollars": 30,
+        "euros": 27
+      }
+    }
+  ]
+}
