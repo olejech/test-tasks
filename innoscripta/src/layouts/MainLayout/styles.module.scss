@@ -71,6 +71,14 @@
   flex-grow: 1;
   padding: 40px;
   background: #fff;
+
+
+  @include mq(md) {
+    padding: $padding-md;
+  }
+  @include mq(sm) {
+    padding: $padding-sm;
+  }
 }
 
 .footer {
