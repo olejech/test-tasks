@@ -7,6 +7,7 @@
   border-radius: 30px;
   color: $primary-color;
   cursor: pointer;
+  font-size: 16px;
   font-weight: 600;
   transition: $duration;
 
@@ -14,4 +15,10 @@
     background: $primary-color;
     color: #fff;
   }
+}
+
+.disabled, .disabled:hover {
+    border: 1px solid $disabled-color;
+    background: #fff;
+    color: $disabled-color;
 }

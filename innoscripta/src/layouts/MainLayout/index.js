@@ -13,7 +13,6 @@ export const MainLayout = ({ children }) => (
       <Link to="/"><img className={cls.logo} src="./images/logo.svg" alt="logo" /></Link>
       <h1 className={cls.title}>React pizza</h1>
       <h4 className={cls.subtitle}>Your interactive Pizza App</h4>
-      {/* TODO: Add cart */}
       <div className={cls.cart}><Cart /></div>
     </header>
 

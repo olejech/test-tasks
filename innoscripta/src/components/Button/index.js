@@ -5,10 +5,10 @@ import cls from './styles.module.scss'
 
 const cx = cn.bind(cls)
 
-export const Button = ({ children, onClick }) => (
+export const Button = ({ children, onClick, disabled }) => (
   <button
     type="button"
-    className={cx('button')}
+    className={cx('button', { disabled })}
     onClick={onClick}
   >
     {children}
@@ -21,4 +21,5 @@ Button.propTypes = {
     PropTypes.number,
   ])).isRequired,
   onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 }
