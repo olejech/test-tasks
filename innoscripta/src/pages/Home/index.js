@@ -1,7 +1,7 @@
 import React from 'react'
 import { MainLayout } from 'layouts/MainLayout'
 import data from 'constants/data.json'
-import { PizzaItem } from 'components/PizzaItem'
+import PizzaItem from 'components/PizzaItem'
 import cls from './styles.module.scss'
 
 export const HomePage = () => (

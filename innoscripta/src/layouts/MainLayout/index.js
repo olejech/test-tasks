@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import cn from 'classnames/bind'
+import Cart from 'components/Cart'
 import cls from './styles.module.scss'
 
 const cx = cn.bind(cls)
@@ -13,7 +14,7 @@ export const MainLayout = ({ children }) => (
       <h1 className={cls.title}>React pizza</h1>
       <h4 className={cls.subtitle}>Your interactive Pizza App</h4>
       {/* TODO: Add cart */}
-      <div className={cls.cart}>cart</div>
+      <div className={cls.cart}><Cart /></div>
     </header>
 
     <main className={cx('main', 'container')}>

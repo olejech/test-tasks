@@ -5,8 +5,14 @@ import cls from './styles.module.scss'
 
 const cx = cn.bind(cls)
 
-export const Button = ({ children }) => (
-  <button type="button" className={cx('button')}>{children}</button>
+export const Button = ({ children, onClick }) => (
+  <button
+    type="button"
+    className={cx('button')}
+    onClick={onClick}
+  >
+    {children}
+  </button>
 )
 
 Button.propTypes = {
@@ -14,4 +20,5 @@ Button.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ])).isRequired,
+  onClick: PropTypes.func.isRequired,
 }
