@@ -2,29 +2,49 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'components/Button'
 import { connect } from 'react-redux'
-import { addPizzaIdToCart, removePizzaIdFromCart } from 'store/actions'
+import {
+  addPizzaToCart,
+  calcTotal,
+  removePizzaFromCart,
+} from 'store/actions'
+import { getCurrencySymbol, getCurrencyName } from 'utils/currency'
 import cls from './styles.module.scss'
 
 const PizzaItem = props => {
   const {
-    id, imageUrl, title, description, price, addPizzaIdToCart, removePizzaIdFromCart,
+    id,
+    imageUrl,
+    title,
+    description,
+    price,
+    currency,
+    addPizzaToCart,
+    removePizzaFromCart,
+    calcTotal,
   } = props
 
   const [disabled, setDisabled] = useState(false)
 
   const onClickHandler = clickedPizza => () => {
     setDisabled(prev => !prev)
-    return disabled ? removePizzaIdFromCart(clickedPizza) : addPizzaIdToCart(clickedPizza)
+    if (disabled) {
+      removePizzaFromCart(clickedPizza)
+    } else {
+      addPizzaToCart(clickedPizza)
+    }
+    calcTotal()
   }
+
+  const priceDependingCurrency = price[getCurrencyName(currency)].toString()
+  const buttonText = `Add to cart ${getCurrencySymbol()}${priceDependingCurrency}`
 
   return (
     <div className={cls.card}>
       <img className={cls.image} src={`/images/pizzas/${imageUrl}`} alt={title} />
       <div className={cls.title}>{title}</div>
       <div className={cls.description}>{description}</div>
-      <Button size="sm" onClick={onClickHandler({ id, price: price.dollars })} disabled={disabled}>
-        Add to cart $
-        {price.dollars}
+      <Button size="sm" onClick={onClickHandler({ id, price })} disabled={disabled}>
+        {buttonText}
       </Button>
     </div>
   )
@@ -36,12 +56,18 @@ PizzaItem.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.exact({ dollars: PropTypes.number, euros: PropTypes.number }).isRequired,
-  addPizzaIdToCart: PropTypes.func.isRequired,
-  removePizzaIdFromCart: PropTypes.func.isRequired,
+  currency: PropTypes.string.isRequired,
+  addPizzaToCart: PropTypes.func.isRequired,
+  removePizzaFromCart: PropTypes.func.isRequired,
+  calcTotal: PropTypes.func.isRequired,
 }
+
+const mapStateToProps = state => ({
+  currency: state.currency,
+})
 
 const mapDispatchToProps = {
-  addPizzaIdToCart, removePizzaIdFromCart,
+  addPizzaToCart, removePizzaFromCart, calcTotal,
 }
 
-export default connect(null, mapDispatchToProps)(PizzaItem)
+export default connect(mapStateToProps, mapDispatchToProps)(PizzaItem)
