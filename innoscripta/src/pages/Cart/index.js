@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { MainLayout } from 'layouts/MainLayout'
 import { connect } from 'react-redux'
-import { getCurrencySymbol } from 'utils/currency'
+import { PizzaItem } from 'pages/Cart/PizzaItem'
 import cls from './styles.module.scss'
 
 const CartPage = ({ items, currency }) => (
@@ -13,16 +13,9 @@ const CartPage = ({ items, currency }) => (
         <span className={cls.clear}>clear cart</span>
       </div>
 
-      {
-        items.map(item => (
-          <article className={cls.article} key={item.id}>
-            <img className={cls.image} src={`/images/pizzas/${item.imageUrl}`} alt={item.title} />
-            <span className={cls.title}>{item.title}</span>
-            <span className={cls.price}>{`${getCurrencySymbol(currency)}${item.price[currency]}`}</span>
-            <button type="button" aria-label="Remove" className={cls.remove} />
-          </article>
-        ))
-      }
+      {items.map(item => (
+        <PizzaItem {...item} currency={currency} key={item.id} />
+      ))}
     </section>
   </MainLayout>
 )

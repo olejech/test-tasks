@@ -10,7 +10,7 @@ import {
 import { getCurrencySymbol, getCurrencyName } from 'utils/currency'
 import cls from './styles.module.scss'
 
-const PizzaItem = props => {
+const PizzaCard = props => {
   const {
     id,
     imageUrl,
@@ -56,7 +56,7 @@ const PizzaItem = props => {
   )
 }
 
-PizzaItem.propTypes = {
+PizzaCard.propTypes = {
   id: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -76,4 +76,4 @@ const mapDispatchToProps = {
   addPizzaToCart, removePizzaFromCart, calcTotal,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PizzaItem)
+export default connect(mapStateToProps, mapDispatchToProps)(PizzaCard)
