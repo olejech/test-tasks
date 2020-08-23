@@ -43,7 +43,13 @@ const PizzaItem = props => {
       <img className={cls.image} src={`/images/pizzas/${imageUrl}`} alt={title} />
       <div className={cls.title}>{title}</div>
       <div className={cls.description}>{description}</div>
-      <Button size="sm" onClick={onClickHandler({ id, price })} disabled={disabled}>
+      <Button
+        size="sm"
+        onClick={onClickHandler({
+          id, price, title, imageUrl,
+        })}
+        disabled={disabled}
+      >
         {buttonText}
       </Button>
     </div>
