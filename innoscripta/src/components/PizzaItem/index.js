@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cls from 'pages/Cart/styles.module.scss'
 import { getCurrencySymbol } from 'utils/currency'
+import cls from './styles.module.scss'
 
 export const PizzaItem = props => {
   const {

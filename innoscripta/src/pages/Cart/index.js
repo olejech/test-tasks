@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { MainLayout } from 'layouts/MainLayout'
 import { connect } from 'react-redux'
-import { PizzaItem } from 'pages/Cart/PizzaItem'
+import { PizzaItem } from 'components/PizzaItem'
 import { calcTotal, clearCart, removePizzaFromCart } from 'store/actions'
 import { CartEmpty } from 'components/CartEmpty'
+import { Button } from 'components/Button'
 import cls from './styles.module.scss'
 
 const CartPage = props => {
@@ -19,6 +20,12 @@ const CartPage = props => {
     calcTotal()
   }
 
+  const confirmHandler = () => {
+
+  }
+
+  if (!items.length) return <MainLayout><CartEmpty /></MainLayout>
+
   return (
     <MainLayout>
       <section>
@@ -28,10 +35,17 @@ const CartPage = props => {
         </div>
 
         {
-          items.length ? items.map(item => (
+          items.map(item => (
             <PizzaItem {...item} currency={currency} removeItem={removeItemHandler} key={item.id} />
-          )) : <CartEmpty />
+          ))
         }
+
+        <label className={cls.label}>
+          <input className={cls.checkbox} type="checkbox" name="delivery" id="delivery" checked disabled />
+          $20 delivery cost
+        </label>
+
+        <Button onClick={confirmHandler}>Confirm order</Button>
       </section>
     </MainLayout>
   )
