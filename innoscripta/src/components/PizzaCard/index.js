@@ -36,7 +36,7 @@ const PizzaCard = props => {
   }
 
   const priceDependingCurrency = price[getCurrencyName(currency)].toString()
-  const buttonText = `Add to cart ${getCurrencySymbol()}${priceDependingCurrency}`
+  const buttonText = `Add to cart ${getCurrencySymbol(currency)}${priceDependingCurrency}`
 
   return (
     <div className={cls.card}>

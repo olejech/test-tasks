@@ -5,7 +5,7 @@ import { getCurrencySymbol } from 'utils/currency'
 
 export const PizzaItem = props => {
   const {
-    title, imageUrl, price, currency,
+    id, title, imageUrl, price, currency, removeItem,
   } = props
 
   return (
@@ -13,14 +13,21 @@ export const PizzaItem = props => {
       <img className={cls.image} src={`/images/pizzas/${imageUrl}`} alt={title} />
       <span className={cls.title}>{title}</span>
       <span className={cls.price}>{`${getCurrencySymbol(currency)}${price[currency]}`}</span>
-      <button type="button" aria-label="Remove" className={cls.remove} />
+      <button
+        type="button"
+        aria-label="Remove"
+        className={cls.remove}
+        onClick={removeItem({ id })}
+      />
     </article>
   )
 }
 
 PizzaItem.propTypes = {
+  id: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.exact({ dollars: PropTypes.number, euros: PropTypes.number }).isRequired,
   currency: PropTypes.string.isRequired,
+  removeItem: PropTypes.func.isRequired,
 }

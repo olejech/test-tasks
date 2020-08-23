@@ -3,12 +3,21 @@ import PropTypes from 'prop-types'
 import { MainLayout } from 'layouts/MainLayout'
 import { connect } from 'react-redux'
 import { PizzaItem } from 'pages/Cart/PizzaItem'
-import { clearCart } from 'store/actions'
+import { calcTotal, clearCart, removePizzaFromCart } from 'store/actions'
 import cls from './styles.module.scss'
 
-const CartPage = ({ items, currency, clearCart }) => {
+const CartPage = props => {
+  const {
+    items, currency, clearCart, removePizzaFromCart, calcTotal,
+  } = props
+
   const onClickHandler = () => {
     clearCart()
+  }
+
+  const removeItemHandler = pizza => () => {
+    removePizzaFromCart(pizza)
+    calcTotal()
   }
 
   return (
@@ -20,7 +29,7 @@ const CartPage = ({ items, currency, clearCart }) => {
         </div>
 
         {items.map(item => (
-          <PizzaItem {...item} currency={currency} key={item.id} />
+          <PizzaItem {...item} currency={currency} removeItem={removeItemHandler} key={item.id} />
         ))}
       </section>
     </MainLayout>
@@ -31,6 +40,8 @@ CartPage.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   currency: PropTypes.string.isRequired,
   clearCart: PropTypes.func.isRequired,
+  removePizzaFromCart: PropTypes.func.isRequired,
+  calcTotal: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -40,6 +51,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   clearCart,
+  removePizzaFromCart,
+  calcTotal,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage)
