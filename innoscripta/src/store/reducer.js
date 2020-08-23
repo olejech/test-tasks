@@ -1,6 +1,6 @@
 import {
   ADD_PIZZA_TO_CART, CALC_TOTAL,
-  CHANGE_CURRENCY,
+  CHANGE_CURRENCY, CLEAR_CART,
   REMOVE_PIZZA_FROM_CART,
 } from 'store/types'
 import { getCurrencyToggledName } from 'utils/currency'
@@ -32,6 +32,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         currency: getCurrencyToggledName(state.currency),
+      }
+    case CLEAR_CART:
+      return {
+        ...state,
+        items: [],
+        total: 0,
       }
     default:
       return state
