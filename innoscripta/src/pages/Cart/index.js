@@ -4,6 +4,7 @@ import { MainLayout } from 'layouts/MainLayout'
 import { connect } from 'react-redux'
 import { PizzaItem } from 'pages/Cart/PizzaItem'
 import { calcTotal, clearCart, removePizzaFromCart } from 'store/actions'
+import { CartEmpty } from 'components/CartEmpty'
 import cls from './styles.module.scss'
 
 const CartPage = props => {
@@ -11,9 +12,7 @@ const CartPage = props => {
     items, currency, clearCart, removePizzaFromCart, calcTotal,
   } = props
 
-  const onClickHandler = () => {
-    clearCart()
-  }
+  const onClickHandler = () => clearCart()
 
   const removeItemHandler = pizza => () => {
     removePizzaFromCart(pizza)
@@ -28,9 +27,11 @@ const CartPage = props => {
           <button type="button" onClick={onClickHandler} className={cls.clear}>clear cart</button>
         </div>
 
-        {items.map(item => (
-          <PizzaItem {...item} currency={currency} removeItem={removeItemHandler} key={item.id} />
-        ))}
+        {
+          items.length ? items.map(item => (
+            <PizzaItem {...item} currency={currency} removeItem={removeItemHandler} key={item.id} />
+          )) : <CartEmpty />
+        }
       </section>
     </MainLayout>
   )
