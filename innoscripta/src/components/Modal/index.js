@@ -6,7 +6,9 @@ import cls from './styles.module.scss'
 
 const cx = cn.bind((cls))
 
-export const Modal = ({ children, showModal, setShowModal }) => {
+export const Modal = ({
+  children, title, showModal, setShowModal,
+}) => {
   const closeHandler = () => {
     setShowModal(false)
   }
@@ -15,7 +17,7 @@ export const Modal = ({ children, showModal, setShowModal }) => {
   return (
     <div className={cx({ modal: showModal })}>
       <div className={cls.header}>
-        <h2>modal</h2>
+        <h2>{title}</h2>
         <button className={cls.close} type="button" aria-label="Close modal" onClick={closeHandler} />
       </div>
 
@@ -32,7 +34,8 @@ export const Modal = ({ children, showModal, setShowModal }) => {
 }
 
 Modal.propTypes = {
+  children: PropTypes.element.isRequired,
+  title: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
 }

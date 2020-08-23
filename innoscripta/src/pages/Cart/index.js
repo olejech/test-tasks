@@ -9,6 +9,7 @@ import { Button } from 'components/Button'
 import { Modal } from 'components/Modal'
 import { getCurrencySymbol } from 'utils/currency'
 import { deliveryCost } from 'constants/data.json'
+import { Form } from 'components/Form'
 import cls from './styles.module.scss'
 
 const CartPage = props => {
@@ -17,8 +18,6 @@ const CartPage = props => {
   } = props
 
   const [showModal, setShowModal] = useState(false)
-
-  const onClickHandler = () => clearCart()
 
   const removeItemHandler = pizza => () => {
     removePizzaFromCart(pizza)
@@ -39,14 +38,12 @@ const CartPage = props => {
       <section>
         <div className={cls.header}>
           <h2 className={cls.h2}>Cart page</h2>
-          <button type="button" onClick={onClickHandler} className={cls.clear}>clear cart</button>
+          <button type="button" onClick={() => clearCart} className={cls.clear}>clear cart</button>
         </div>
 
-        {
-          items.map(item => (
-            <PizzaItem {...item} currency={currency} removeItem={removeItemHandler} key={item.id} />
-          ))
-        }
+        {items.map(item => (
+          <PizzaItem {...item} currency={currency} removeItem={removeItemHandler} key={item.id} />
+        ))}
 
         <label className={cls.label}>
           <input className={cls.checkbox} type="checkbox" name="delivery" id="delivery" checked disabled />
@@ -55,7 +52,8 @@ const CartPage = props => {
 
         <Button onClick={confirmHandler}>Confirm order</Button>
 
-        <Modal showModal={showModal} setShowModal={setShowModal}>
+        <Modal showModal={showModal} setShowModal={setShowModal} title="Confirm order">
+          <Form onSubmit={confirmHandler} />
           <p>{confirmText}</p>
         </Modal>
       </section>
