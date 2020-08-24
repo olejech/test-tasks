@@ -1,0 +1,15 @@
+@import 'styles/mixins';
+
+.title, .text {
+  margin-bottom: 20px;
+}
+
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.button {
+  margin-top: 20px;
+  float: right;
+}
