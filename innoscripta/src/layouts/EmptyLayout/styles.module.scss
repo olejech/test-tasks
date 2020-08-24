@@ -1,0 +1,24 @@
+@import 'styles/vars';
+@import 'styles/mixins';
+
+.wrap {
+  display: flex;
+  min-height: 100vh;
+  padding: $padding;
+  background: #ffdf8c;
+
+  @include mq(md) {
+    padding: $padding-md;
+  }
+  @include mq(sm) {
+    padding: $padding-sm;
+  }
+}
+
+.container {
+  max-width: 500px;
+  padding: $padding;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+}
