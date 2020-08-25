@@ -2,7 +2,8 @@
   "extends": ["airbnb", "plugin:react-hooks/recommended"],
   "plugins": ["react", "react-hooks"],
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -28,6 +29,8 @@
       "required": {
         "some": [ "nesting", "id"  ]
       }
-    }]
+    }],
+    "no-empty": "off",
+    "no-underscore-dangle": "off"
   }
 }
