@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { EmptyLayout } from 'layouts/EmptyLayout'
 import { AuthForm } from 'components/AuthForm'
 import { connect } from 'react-redux'
@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import cls from './styles.module.scss'
 
-const SignInPage = ({ signUp }) => {
+const SignInPage = memo(({ signUp }) => {
   const history = useHistory()
   const [form, setForm] = useState({
     username: '',
@@ -32,7 +32,7 @@ const SignInPage = ({ signUp }) => {
       <AuthForm buttonText="Create" onChangeHandler={onChangeHandler} onSubmitHandler={signUpHandler} />
     </EmptyLayout>
   )
-}
+})
 
 SignInPage.propTypes = {
   signUp: PropTypes.func.isRequired,

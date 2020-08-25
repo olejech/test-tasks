@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'components/Button'
 import { connect } from 'react-redux'
@@ -25,15 +25,18 @@ const PizzaCard = props => {
 
   const [disabled, setDisabled] = useState(false)
 
-  const onClickHandler = clickedPizza => () => {
-    setDisabled(prev => !prev)
-    if (disabled) {
-      removePizzaFromCart(clickedPizza)
-    } else {
-      addPizzaToCart(clickedPizza)
-    }
-    calcTotal()
-  }
+  const onClickHandler = useCallback(
+    clickedPizza => () => {
+      setDisabled(prev => !prev)
+      if (disabled) {
+        removePizzaFromCart(clickedPizza)
+      } else {
+        addPizzaToCart(clickedPizza)
+      }
+      calcTotal()
+    },
+    [addPizzaToCart, removePizzaFromCart, calcTotal, disabled],
+  );
 
   const priceDependingCurrency = price[getCurrencyName(currency)].toString()
   const buttonText = `Add to cart ${getCurrencySymbol(currency)}${priceDependingCurrency}`

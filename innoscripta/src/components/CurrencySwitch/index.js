@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'components/Button'
 import { connect } from 'react-redux'
@@ -7,10 +7,10 @@ import { getCurrencySymbol } from 'utils/currency'
 import cls from './styles.module.scss'
 
 const CurrencySwitch = ({ currency, changeCurrency, calcTotal }) => {
-  const onClickHandler = () => {
+  const onClickHandler = useCallback(() => {
     changeCurrency()
     calcTotal()
-  }
+  }, [changeCurrency, calcTotal])
 
   return (
     <Button

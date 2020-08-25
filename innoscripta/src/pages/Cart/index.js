@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import MainLayout from 'layouts/MainLayout'
@@ -18,14 +18,14 @@ const CartPage = props => {
 
   const history = useHistory()
 
-  const removeItemHandler = pizza => () => {
+  const removeItemHandler = useCallback(pizza => () => {
     removePizzaFromCart(pizza)
     calcTotal()
-  }
+  }, [removePizzaFromCart, calcTotal])
 
-  const goToCheckoutPage = () => {
+  const goToCheckoutPage = useCallback(() => {
     history.push('/checkout')
-  }
+  }, [history])
 
   const deliveryText = `${getCurrencySymbol(currency)}${deliveryCost} delivery cost`
 

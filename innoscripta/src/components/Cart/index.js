@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCurrencySymbol } from 'utils/currency'
 import cls from './styles.module.scss'
 
-const Cart = ({ items, total, currency }) => (
+const Cart = memo(({ items, total, currency }) => (
   <Link to="/cart" className={cls.cart}>
     <div className={cls.total}>
       {getCurrencySymbol(currency)}
@@ -13,7 +13,7 @@ const Cart = ({ items, total, currency }) => (
     </div>
     <div className={cls.items}>{items.length}</div>
   </Link>
-)
+))
 
 Cart.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,

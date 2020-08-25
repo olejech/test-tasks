@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames/bind'
 import cls from './styles.module.scss'
@@ -7,7 +7,7 @@ const cx = cn.bind(cls)
 
 function noop() {}
 
-export const Button = ({
+export const Button = memo(({
   children, onClick, disabled, type, className,
 }) => (
 
@@ -19,7 +19,7 @@ export const Button = ({
   >
     {children}
   </button>
-)
+))
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,

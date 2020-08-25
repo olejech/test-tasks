@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Input } from 'components/Input'
 import MainLayout from 'layouts/MainLayout'
@@ -25,11 +25,11 @@ const CheckoutPage = ({
     email: '',
   })
 
-  const onChangeHandler = event => {
+  const onChangeHandler = useCallback(event => {
     setForm({ ...form, [event.target.name]: event.target.value })
-  }
+  }, [form])
 
-  const onSubmit = async e => {
+  const onSubmit = useCallback(async e => {
     e.preventDefault()
 
     if (!token) {
@@ -38,7 +38,7 @@ const CheckoutPage = ({
       await createOrder({ ...form, items })
     }
     clearCart()
-  }
+  }, [token, createOrder, form, clearCart, items])
 
   const confirmText = `Total: ${getCurrencySymbol(currency)}${total + deliveryCost} (includes delivery cost)`
 
