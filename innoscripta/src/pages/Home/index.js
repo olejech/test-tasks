@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainLayout } from 'layouts/MainLayout'
+import MainLayout from 'layouts/MainLayout'
 import data from 'constants/data.json'
 import PizzaCard from 'components/PizzaCard'
 import cls from './styles.module.scss'

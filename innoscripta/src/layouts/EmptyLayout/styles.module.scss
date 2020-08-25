@@ -17,8 +17,9 @@
 
 .container {
   max-width: 500px;
+  max-height: 300px;
   padding: $padding;
-  margin: 0 auto;
+  margin: auto;
   background: #fff;
   border-radius: 10px;
 }

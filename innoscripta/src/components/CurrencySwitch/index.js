@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'components/Button'
 import { connect } from 'react-redux'
-import { calcTotal, changeCurrency } from 'store/actions'
+import { calcTotal, changeCurrency } from 'store/cart/actions'
 import { getCurrencySymbol } from 'utils/currency'
+import cls from './styles.module.scss'
 
 const CurrencySwitch = ({ currency, changeCurrency, calcTotal }) => {
   const onClickHandler = () => {
@@ -11,7 +12,14 @@ const CurrencySwitch = ({ currency, changeCurrency, calcTotal }) => {
     calcTotal()
   }
 
-  return <Button onClick={onClickHandler}>{getCurrencySymbol(currency)}</Button>
+  return (
+    <Button
+      className={cls.switcher}
+      onClick={onClickHandler}
+    >
+      {getCurrencySymbol(currency)}
+    </Button>
+  )
 }
 
 CurrencySwitch.propTypes = {
@@ -21,7 +29,7 @@ CurrencySwitch.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  currency: state.currency,
+  currency: state.cart.currency,
 })
 
 const mapDispatchToProps = {

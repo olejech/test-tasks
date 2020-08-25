@@ -22,9 +22,9 @@ Cart.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  items: state.items,
-  total: state.total,
-  currency: state.currency,
+  items: state.cart.items,
+  total: state.cart.total,
+  currency: state.cart.currency,
 })
 
 export default connect(mapStateToProps)(Cart)

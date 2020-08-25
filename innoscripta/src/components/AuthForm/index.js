@@ -4,14 +4,16 @@ import { Input } from 'components/Input'
 import { Button } from 'components/Button'
 import cls from './styles.module.scss'
 
-export const AuthForm = ({ onSubmitHandler }) => (
+export const AuthForm = ({ buttonText, onChangeHandler, onSubmitHandler }) => (
   <form onSubmit={onSubmitHandler}>
-    <Input label="Username" id="username" name="username" required />
-    <Input label="Password" id="password" name="password" type="password" required />
-    <Button className={cls.button} type="submit">Login</Button>
+    <Input label="Username:" id="username" name="username" onChange={onChangeHandler} required />
+    <Input label="Password:" id="password" name="password" type="password" onChange={onChangeHandler} required />
+    <Button className={cls.button} type="submit">{buttonText}</Button>
   </form>
 )
 
 AuthForm.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onChangeHandler: PropTypes.func.isRequired,
   onSubmitHandler: PropTypes.func.isRequired,
 }

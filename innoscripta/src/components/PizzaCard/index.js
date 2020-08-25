@@ -6,7 +6,7 @@ import {
   addPizzaToCart,
   calcTotal,
   removePizzaFromCart,
-} from 'store/actions'
+} from 'store/cart/actions'
 import { getCurrencySymbol, getCurrencyName } from 'utils/currency'
 import cls from './styles.module.scss'
 
@@ -46,7 +46,7 @@ const PizzaCard = props => {
       <Button
         size="sm"
         onClick={onClickHandler({
-          id, price, title, imageUrl,
+          id, price, title, imageUrl, description,
         })}
         disabled={disabled}
       >
@@ -69,7 +69,7 @@ PizzaCard.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  currency: state.currency,
+  currency: state.cart.currency,
 })
 
 const mapDispatchToProps = {

@@ -1,0 +1,7 @@
+@import 'styles/mixins';
+
+.switcher {
+  @include mq(lg) {
+    padding: 10px 30px;
+  }
+}

@@ -13,12 +13,16 @@ export const PizzaItem = props => {
       <img className={cls.image} src={`/images/pizzas/${imageUrl}`} alt={title} />
       <span className={cls.title}>{title}</span>
       <span className={cls.price}>{`${getCurrencySymbol(currency)}${price[currency]}`}</span>
-      <button
-        type="button"
-        aria-label="Remove"
-        className={cls.remove}
-        onClick={removeItem({ id })}
-      />
+      {
+        removeItem && (
+          <button
+            type="button"
+            aria-label="Remove"
+            className={cls.remove}
+            onClick={removeItem({ id })}
+          />
+        )
+      }
     </article>
   )
 }
@@ -29,5 +33,9 @@ PizzaItem.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.exact({ dollars: PropTypes.number, euros: PropTypes.number }).isRequired,
   currency: PropTypes.string.isRequired,
-  removeItem: PropTypes.func.isRequired,
+  removeItem: PropTypes.func,
+}
+
+PizzaItem.defaultProps = {
+  removeItem: null,
 }

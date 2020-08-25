@@ -1,10 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { MainLayout } from 'layouts/MainLayout'
+import MainLayout from 'layouts/MainLayout'
 import { connect } from 'react-redux'
 import { PizzaItem } from 'components/PizzaItem'
-import { calcTotal, clearCart, removePizzaFromCart } from 'store/actions'
+import { calcTotal, clearCart, removePizzaFromCart } from 'store/cart/actions'
 import { CartEmpty } from 'components/CartEmpty'
 import { Button } from 'components/Button'
 import { getCurrencySymbol } from 'utils/currency'
@@ -64,9 +64,9 @@ CartPage.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  items: state.items,
-  currency: state.currency,
-  total: state.total,
+  items: state.cart.items,
+  currency: state.cart.currency,
+  total: state.cart.total,
 })
 
 const mapDispatchToProps = {

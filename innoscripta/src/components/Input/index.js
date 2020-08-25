@@ -5,8 +5,10 @@ import cls from './styles.module.scss'
 
 const cx = cn.bind(cls)
 
+const noop = () => {}
+
 export const Input = ({
-  className, label, type, name, id, placeholder, required,
+  className, label, type, name, id, placeholder, onChange, required,
 }) => (
 
   <label className={cls.label}>
@@ -17,6 +19,7 @@ export const Input = ({
       name={name}
       id={id}
       placeholder={placeholder}
+      onChange={onChange}
       required={required}
     />
   </label>
@@ -29,6 +32,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
+  onChange: PropTypes.func,
   required: PropTypes.bool,
 }
 
@@ -37,4 +41,5 @@ Input.defaultProps = {
   className: '',
   placeholder: '',
   required: false,
+  onChange: noop,
 }

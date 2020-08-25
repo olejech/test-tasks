@@ -11,7 +11,7 @@ const initialState = {
   currency: 'dollars',
 }
 
-export const reducer = (state = initialState, action) => {
+export const cart = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PIZZA_TO_CART:
       return {
