@@ -48,7 +48,9 @@ In the project directory, you can run:
 
 `yarn install`
 
-`yarn server:start`
+`yarn build`
+
+`yarn start`
 
 `yarn test`
 
